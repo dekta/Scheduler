@@ -1,5 +1,7 @@
 ## Tutoring Appointment Booking System
 
+## Deploy Link
+- Netlify -> https://comforting-nougat-70fd30.netlify.app/index.html
 
 ## Description
 
@@ -58,7 +60,7 @@ Following HLD diagram indicates the database build in components
 
 
 
-##Deploy Link
+## Deploy Link
 - Netlify -> https://comforting-nougat-70fd30.netlify.app/index.html
 
 ```
