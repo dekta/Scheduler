@@ -37,6 +37,13 @@ Following ER diagram indicates the database tables and thier interaction which w
 Following HLD diagram indicates the database build in components
 <img width="626" alt="tutoring_HLD" src="https://user-images.githubusercontent.com/82109628/229363095-a1e994c8-d34c-48ee-bef1-052e37526639.png">
 
+   * Explanation of HLD :=>
+      - Load Balancer => distributes incoming network traffic across multiple servers or network resources to ensure that no single device is overwhelmed with too much traffic.
+      - DNS => DNS is like a phone book for the internet. When you enter a domain name in your web browser, your computer sends a request to a DNS server to look up the IP address associated with that domain name. The DNS server then returns the IP address to your computer, allowing your web browser to connect to the server associated with the domain name.
+      - Media-Manager => to store the image 
+      - SES => in aws, SES stands for simple email service. for that we use nodamiler to send email to user regarging registration and slot booking
+      - Cache => for cache we used radis.
+
 
 ## Features
 
