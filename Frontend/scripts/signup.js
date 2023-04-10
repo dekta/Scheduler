@@ -17,6 +17,45 @@ links.forEach((link) => {
 });
 
 
+
+// login function
+const Loginbutton = document.querySelector("#login");
+const Lform = document.querySelector("#Lform");
+
+Loginbutton.addEventListener("click", async () => {
+  const email = Lform.querySelector('input[type="email"]').value;
+  const password = Lform.querySelector('input[type="password"]').value;
+
+  const url = "https://odd-teal-caridea-tux.cyclic.app/userRoutes/login";
+
+  const data = {
+    email: email,
+    password: password
+  };
+  //console.log(data)
+
+  let res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+  const response = await res.json();
+  console.log(response)
+  if(response.msg === "Login successfull"){
+      sessionStorage.setItem("Userdetials",JSON.stringify(response));
+      sessionStorage.setItem("status", true)
+      window.location.href = "index.html"
+  }
+  else{
+    alert(response.msg)
+  }
+  // console.log(response);
+});
+
+
+
+
+
 // Next function
 
 document.querySelector("#Next").addEventListener("click", NEXT);
@@ -42,6 +81,8 @@ function NEXT() {
   }
 }
 
+
+//signup
 async function addDetails(name, email, password) {
 
   if(name.length==0 || email.length ==0 || password.length==0){
@@ -66,39 +107,6 @@ async function addDetails(name, email, password) {
   console.log(response);
 }
 
-// login function
-const Loginbutton = document.querySelector("#login");
-const Lform = document.querySelector("#Lform");
-
-Loginbutton.addEventListener("click", async () => {
-  const email = Lform.querySelector('input[type="email"]').value;
-  const password = Lform.querySelector('input[type="password"]').value;
-
-  const url = "https://odd-teal-caridea-tux.cyclic.app/userRoutes/login";
-
-  const data = {
-    email: email,
-    password: password
-  };
-  console.log(data)
-
-  let res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
-  const response = await res.json();
-  sessionStorage.setItem("Userdetials",JSON.stringify(response));
-  sessionStorage.setItem("status", true)
-
-  if(response.msg === "Login successfull"){
-      window.location.href = "index.html"
-  }
-  else{
-    alert(response.msg)
-  }
-  // console.log(response);
-});
 
 
 

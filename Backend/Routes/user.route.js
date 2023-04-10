@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 require('dotenv').config()
 var cookieParser = require('cookie-parser')
 const Redis = require('ioredis');
-
+const cors = require("cors");
 
 const redis = new Redis({
     port: 14080,
@@ -19,6 +19,10 @@ const {UserModel}=require('../Models/User.model');
 const UserRouter = express.Router()
 
 UserRouter.use(cookieParser())
+UserRouter.use(cors({
+    origin: '*',
+    credentials: true,
+}))
 
 const {validate} = require('../middlewares/signup_validate');
 const { TeacherModel } = require('../Models/teacher.model');
@@ -34,7 +38,7 @@ UserRouter.post('/signup',validate, async (req, res) => {
     if(!check.length){
         bcrypt.hash(password, 6, async function (err, hash) {
             if (err) {
-                res.status(500).send({ 'msg': "Something went wrong" })
+                res.status(500).send({ 'msg': "Something went wrong in signup" })
             }
             else {
                 try {
@@ -91,7 +95,7 @@ UserRouter.post('/signup',validate, async (req, res) => {
                         if (error) {
                             console.log('ERR: Error from nodemailer')
                             console.log(error)
-                            res.status(500).send({ "msg": "Something went wrong" })
+                            res.status(500).send({ "msg": "Something went wrong in mail sending" })
                         } else {
                             console.log('Email Sent Successfully');
                             res.status(201).send({ "msg": `Signup Successfully`, "email": email })
@@ -136,12 +140,8 @@ UserRouter.post('/login', async (req, res) => {
     if(stats===false){
         userdetials=student
     }
-
-
-   
     console.log(student)
 
-   
     if (user) {
         try {
             bcrypt.compare(password, user.password, async function (err, result) {
@@ -157,8 +157,8 @@ UserRouter.post('/login', async (req, res) => {
                     await UserModel.findOneAndUpdate(filter,update)
 
                     res.cookie("token",token,{httpOnly:true})
-                    res.setHeader("token",token)
-                    res.status(201).send({"msg":"Login successfull","username":user.name,"userEmail":user.email,"userdet":user,"extdet":userdetials })
+                   
+                    res.status(201).send({"msg":"Login successfull","username":user.name,"userEmail":user.email,"userdet":user,"extdet":userdetials,"isAdmin":user.isAdmin })
                 }
                 else {
                     res.send({ 'msg': "incorrect password" })
@@ -192,7 +192,7 @@ UserRouter.get("/logout",async(req,res)=>{
                     await UserModel.findOneAndUpdate(filter,update)
                     res.clearCookie('token');
                     
-                    res.sendStatus(200);
+                    res.sendStatus({"msg":"logout successfully"});
        
                 }
             })
@@ -247,8 +247,10 @@ UserRouter.post('/forgotPasword',async (req,res)=>{
                 res.status(500).send({ "msg": "Something went wrong with message service" })
             } else {
                 console.log('Email Sent Successfully');
-                res.cookie("VerifyOtp",otp,{httpOnly:true})
-                res.cookie("VerifyEmail",email,{httpOnly:true})
+                // res.cookie("VerifyOtp",otp,{httpOnly:true})
+                // res.cookie("VerifyEmail",email,{httpOnly:true})
+                redis.set('otp',otp)
+                redis.set('email',email)
                 res.status(201).send({ "msg": `otp send`, "email": email })
 
             }
@@ -265,11 +267,16 @@ UserRouter.post('/forgotPasword',async (req,res)=>{
 //verify OTP
 UserRouter.post('/verifyOTP', async (req, res) => {
     let { otp } = req.body;
+    //console.log(otp)
     if (!otp) return res.status(401).send({ 'msg': "Please enter otp" })
     try {
-        const VerifyOtp = req.cookies.VerifyOtp;
-        if(otp === VerifyOtp){
-             res.clearCookie('VerifyOtp');
+        // const VerifyOtp = req.cookies.VerifyOtp;
+        const VerifyOtp = await redis.get('otp')
+        console.log(VerifyOtp )
+        if(+otp === +VerifyOtp){
+            //console.log("check")
+            //  res.clearCookie('VerifyOtp');
+            await redis.getdel('otp')
             res.status(200).send({ "msg": 'otp Verified' })
         }
     }
@@ -284,8 +291,8 @@ UserRouter.post('/verifyOTP', async (req, res) => {
 
 UserRouter.post('/changePassword',async(req,res)=>{
     let {password} = req.body
-    let email = req.cookies.VerifyEmail
-    //console.log(password,email)
+    let email = await redis.get('email')
+    
     try{
         if(email){
            
@@ -297,7 +304,8 @@ UserRouter.post('/changePassword',async(req,res)=>{
                     let update = {password:hash}
                     let filter = {email:email}
                     await UserModel.findOneAndUpdate(filter,update)
-                    res.clearCookie('VerifyEmail');
+                    //res.clearCookie('VerifyEmail');
+                    await redis.getdel('email')
                     res.status(200).send({ "msg": 'password updated' })
                 }
 
@@ -318,3 +326,7 @@ UserRouter.post('/changePassword',async(req,res)=>{
 
 
 module.exports = { UserRouter}
+
+
+
+//https://ik.imagekit.io/8scvrlvcy/path/to/myimage.jpg

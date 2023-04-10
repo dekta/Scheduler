@@ -24,7 +24,8 @@ const teacherSchema  =  mongoose.Schema({
         slot2:{type:Boolean, default:false},
         slot3:{type:Boolean, default:false},
         slot4:{type:Boolean, default:false}
-    }
+    },
+    ispermanent:{type:Boolean , default:false}
         
 })
 

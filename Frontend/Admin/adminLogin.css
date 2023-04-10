@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif;
+    box-sizing: border-box;
+}
+#nav{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.signup{
+    width: 100%;
+    height: 100vh;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+.signup>#lForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 2rem;
+    width: 40%;
+    height: 80%;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+}
+
+.signup > #lForm > h2 {
+    font-size: 1.5 rem;
+    text-transform: uppercase;
+    font-family: "Roboto";
+    margin: 2rem 0;
+}
+
+.signup > #lForm > input,  .signup > #lForm > button {
+    padding: 1rem;
+    outline: none;
+    border: 1px solid wheat;
+    margin: 0.5rem;
+    border-radius: 5px;
+    width: 60%;
+}
+.signup > #lForm>div>  button {
+    background-color: #f07922;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;
+    padding: 10px;
+}
+.signup > #lForm >div> button:hover {
+    background-color: #894311;
+    cursor: pointer;
+}
+.signup .formborder {
+    width: 300px;
+    height: 80%;
+    background-color:  #f07922;
+    border-radius: 0 200px 200px 0;
+    position: relative;
+}
+  
+
+
+.formborder div{
+    display: flex;
+    flex-direction: column;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    width: 60%;
+    margin: 200px 100px;
+
+}
+
+.formborder div button{
+    width: 100%;
+    background-color:white;
+    border: none;
+    cursor: pointer;
+    color: #f07922;
+    font-size: 1rem;
+    padding: 5px 10px;
+}
+
+
+@media screen and (max-width: 760px) {
+    .contact {
+        height: 70vh;
+        margin-bottom: 50px;
+   }
+    .contact > form {
+        width: 100%;
+        height: 100%;
+   }
+    .contact .formborder {
+        display: none;
+   }
+}
+@media screen and (max-width: 370px) {
+    .contact {
+        height: 50vh;
+        margin-bottom: 70px;
+   }
+    .contact > form {
+        width: 100%;
+        height: 100%;
+   }
+    .contact .formborder {
+        display: none;
+   }
+}

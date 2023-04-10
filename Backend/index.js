@@ -30,7 +30,7 @@ const {TeacherRouter} = require('./Routes/teacher.route')
 const {FeedbackRouter} = require("./Routes/feedback.route")
 const {BookingRouter} = require("./Routes/slotBooking.route")
 const {CourseRouter} = require('./Routes/course.route')
-
+const {AdminRouter}=require("./Routes/admin.route")
 
 
 //Api End points
@@ -40,7 +40,7 @@ app.use("/scheduler/teacher",TeacherRouter)
 app.use("/feedback",FeedbackRouter)
 app.use("/booking",BookingRouter)
 app.use('/course',CourseRouter)
-
+app.use("/adminRoute", AdminRouter)
 
 
 app.get("/",(req,res)=>{

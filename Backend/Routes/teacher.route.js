@@ -61,8 +61,14 @@ TeacherRouter.post("/addDetails",async(req,res)=>{
 
 //get All Teacher Details
 TeacherRouter.get("/getAllTeacher",async(req,res)=>{
-    const Teachers = await TeacherModel.find()
-    res.send(Teachers)
+    const Teachers = await TeacherModel.find({ispermanent:true})
+    if(Teachers){   
+        res.send(Teachers)
+    }
+    else{
+        res.send({"msg":"No Teacher Available"})
+    }
+    
 })
 
 

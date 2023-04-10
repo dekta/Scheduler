@@ -45,27 +45,51 @@
 
 
     <div id="head">
-        <div id="headchild">
         <div id="child1">
-            <div><h2>Forgot Your Password?</h2></div>
+          <div id="forgot-password">
+            <h3>Forgot Your Password?</h3>
+            <form id="forgot-password-form">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" placeholder="Enter Email" required />
+              <div><input type="checkbox"> Iam not a robot</div>
+              <button type="submit" class="btn" >Submit</button>
+            </form>
+            <div  style="border: 1px solid black;color: black; padding: 5px; color: black; text-align: center; width: 50%;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; margin-top: 10px;"> <h4 id="otpSend"></h4> </div>
            
-                <div>Email</div>
-                <div id="doit"><input placeholder="Enter Email" id="mail_inbox" type="email"></div>
-            
-            <div><input type="checkbox"> Iam not a robot</div>
-            <div id="appendotp">
-            <div id="forgot"><button onclick="forgot()">send OTP</button></div>
-           </div>
-            <br>
-            <div id="alert"></div>
-        </div>
-        <div id="child2">
-            <div><img src="./images/download (1).png" alt=""></div>
-        </div>
-    </div>
-</div>
+          </div>
+          <div id="appendotp">
+            <h3>Verify OTP</h3>
+            <form id="verify-otp-form">
+              <label for="otp">OTP:</label>
+              <input type="text" id="otp" name="otp" required />
+              <button type="submit" class="btn">Submit</button>
+            </form>
+            <div  style="border: 1px solid black;color: black; padding: 5px; color: black; text-align: center; width: 50%;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;margin-top: 10px;"><h4 id="otpVerified"></h4> </div>
+        
+          </div>
+  
+          <div id="changePass">
+            <h3>Change Password</h3>
+            <form id="change-password-form">
+              <label for="password">New Password:</label>
+              <input type="password" id="password" name="password" required />
+              <button type="submit" class="btn">Submit</button>
+            </form>
+            <div style="border: 1px solid black;color: black; padding: 5px; color: black; text-align: center; width: 50%;box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;margin-top: 10px;"> <h4  id="res"> </h4></div>
+          </div>
 
- <!-- -----------------   Vamshi code footer starts   ---------         -->
+          
+
+        </div>
+
+        <div id="child2">
+          <img src="./images/forgot.png" style="width: 100%;" alt="">
+        </div>
+        
+      
+      </div>
+
+ <!-- -----------------    footer starts   ---------         -->
  <div id="footer">
     <div>
         <div>

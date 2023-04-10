@@ -14,7 +14,7 @@ FeedbackRouter.post('/StudentFeedback', async (req, res) => {
     res.status(201).send({"msg":"feedback added","feedback":feedback});
   } catch (err) {
     console.error(err);
-    res.status(500).json({message: 'Internal server error'});
+    res.status(500).json({"msg": 'Internal server error',"err":err});
   }
 });
 

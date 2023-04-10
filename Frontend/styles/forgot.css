@@ -48,6 +48,31 @@
   #contdiv > img {
     margin-right: 5px;
   }
+
+
+#head{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+#child1,#child2{
+    width: 50%;
+}
+
+
+#forgot-password,#appendotp,#changePass{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    width: 100%;
+}
+
+#forgot-password-form button,#appendotp button,#changePass button {
+    color: white;
+    background-color: #f07922;
+    border: 1px solid red;
+}
   
   @media screen and (min-width: 1240px) and (max-width: 1080px) {
     #contdiv {

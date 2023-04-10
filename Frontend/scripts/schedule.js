@@ -30,13 +30,14 @@ if (slot4.checked === true) {
 const signupBtn = document.getElementById("submit");
 
 signupBtn.addEventListener("submit", async function(event){
-  window.location.href='payment.html'
   event.preventDefault();
-  console.log("hi")
+  //console.log("hi")
   const StudentName = document.getElementById("fName").value;
   const courseName = document.getElementById("lName").value;
   const email = document.getElementById("email").value;
   const phone = document.getElementById("mbl").value;
+  const teacherName = tutor.teacherDetail.name
+  
 
   let slot = "";
   let slot1 = document.getElementById("slot1");
@@ -57,7 +58,7 @@ signupBtn.addEventListener("submit", async function(event){
     slot = slot4.value;
   }
 
-  const user = { StudentName, email, phone, courseName,Teacher_Booking_id ,slot};
+  const user = { StudentName, email, phone, courseName,Teacher_Booking_id ,teacherName,slot};
   console.log(user)
   const res = await fetch("https://odd-teal-caridea-tux.cyclic.app/booking/slotBooking", {
       method: "POST",
@@ -68,6 +69,10 @@ signupBtn.addEventListener("submit", async function(event){
 
   const response = await res.json();
   console.log(response);
+  if(response.msg=="Booking Confirmed"){
+    window.location.href='payment.html'
+  }
+ 
 
 })
 
@@ -80,11 +85,11 @@ let exp= document.getElementById("exp")
 let appendimage = document.getElementById("appendimage")
 
 
-appendimage.src=tutor.image
-name.textContent="Name:"+" "+tutor.teacherDetail.name;
+appendimage.src=tutor.teacherDetail.avatar
+name.textContent="Name: "+" "+tutor.teacherDetail.name;
 email.textContent=tutor.teacherDetail.email;
-edu.textContent="Education:"+" "+tutor.qualification;
-sub.textContent="Subject:"+" "+tutor.expertise.join(" ");
+edu.textContent="Education: "+" "+tutor.qualification;
+sub.innerText="Subject:"+" "+tutor.expertise;
 exp.textContent="Experience:"+" "+tutor.experience+" "+"Years";
    
 

@@ -1,0 +1,92 @@
+
+#nav {
+    width: 100%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 19px 3px;
+  }
+  body {
+    font-family: "Chewy";
+  }
+  
+  #logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Chewy";
+    font-size: 22px;
+    color: black;
+  }
+
+  #divcont {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #navelemetns {
+    display: flex;
+    color: black;
+  }
+  #navelemetns > div {
+    margin-right: 20px;
+    font-size: 17px;
+  }
+  #navelemetns > div:hover {
+    color: #f07922;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-position: under;
+    text-decoration-color: #f07922;
+    font-style: bold;
+  }
+  
+  #contdiv > img {
+    margin-right: 5px;
+  }
+
+
+#dashbord{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 100px;
+    text-align: center;
+}
+
+#dashbord .block{
+    border-radius: 60%;
+    padding: 60px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+
+
+  @media screen and (min-width: 1240px) and (max-width: 1080px) {
+    #contdiv {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  
+  @media screen and (min-width: 0px) and (max-width: 995px) {
+    #navelemetns {
+      flex-direction: column;
+    }
+    #dashbord{
+        flex-direction: column;
+    }
+    #dashbord .block{
+        margin-top: 5px;
+    }
+  }
+
+  @media screen and (min-width:50px) and (max-width:338px) {
+    #nav{
+        position: relative;
+        width: 100%;
+    }
+}
