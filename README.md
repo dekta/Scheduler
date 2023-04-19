@@ -1,7 +1,7 @@
 ## Tutoring Appointment Booking System
 
 ## Deploy Link
-- Client-Side => https://spectacular-valkyrie-aa1b7c.netlify.app/
+- Client-Side =>https://schedularcom.netlify.app/
 - Admin-Side => https://luminous-sprite-01d38d.netlify.app/
 
 ## Description
