@@ -29,9 +29,6 @@
 - Booking Module
 - Feedback Module
 
-## ER Diagram
-Following ER diagram indicates the database tables and thier interaction which we are using.
-![WhatsApp Image 2023-03-28 at 19 55 01](https://user-images.githubusercontent.com/82109628/229362398-d2545398-01da-4b4e-8af1-9e4d747c184b.jpg)
 
 ## System Design
 Following HLD diagram indicates the database build in components
