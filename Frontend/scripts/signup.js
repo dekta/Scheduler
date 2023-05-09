@@ -1,5 +1,8 @@
 // const { json } = require("body-parser");
 
+
+
+
 // code for change form start here
 const forms = document.querySelector(".forms");
 let links = document.querySelectorAll(".link");
@@ -23,31 +26,52 @@ const Loginbutton = document.querySelector("#login");
 const Lform = document.querySelector("#Lform");
 
 Loginbutton.addEventListener("click", async () => {
+  
   const email = Lform.querySelector('input[type="email"]').value;
+
   const password = Lform.querySelector('input[type="password"]').value;
 
   const url = "https://odd-teal-caridea-tux.cyclic.app/userRoutes/login";
+
+  
+  let load = document.getElementById("load")
+  load.style.display = "block"
 
   const data = {
     email: email,
     password: password
   };
-  //console.log(data)
-
-  let res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
-  const response = await res.json();
-  console.log(response)
-  if(response.msg === "Login successfull"){
-      sessionStorage.setItem("Userdetials",JSON.stringify(response));
-      sessionStorage.setItem("status", true)
-      window.location.href = "index.html"
+  console.log(data)
+  
+  try{
+    let res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+      mode: "no-cors"
+    });
+    const response = await res.json();
+    console.log(response)
+   
+   load.style.display = "none"
+    if(response.msg === "Login successfull"){
+        const userdetails =response.userdetails
+        const status = true
+        const avatar = response.avatar
+        const token = response.token
+        localStorage.setItem("Userdetials",JSON.stringify(userdetails));
+        localStorage.setItem("status", status)
+        localStorage.setItem("avatar",JSON.stringify(avatar))
+        localStorage.setItem("token",JSON.stringify(token))
+        window.location.href = "index.html"
+    }
+    else{
+      alert(response.msg)
+      load.style.display = "none"
+    }
   }
-  else{
-    alert(response.msg)
+  catch(err){
+    console.log(err)
   }
   // console.log(response);
 });
@@ -101,7 +125,8 @@ async function addDetails(name, email, password) {
   let res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
+    mode: "no-cors"
   });
   const response = await res.json();
   console.log(response);
@@ -181,7 +206,8 @@ let  expertise = val
   let res = await fetch(td,{
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
+      mode: "no-cors"
    })
    const response = await res.json();
    console.log(response);
@@ -261,7 +287,8 @@ console.log(val)
   let res = await fetch(sd,{
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
+      mode: "no-cors"
    })
    const response = await res.json();
    console.log(response);

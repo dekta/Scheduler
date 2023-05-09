@@ -33,7 +33,7 @@ function AppendDetails(data){
         CourseName.innerText =  "CourseName: "+ele.courseName
 
         let duration= document.createElement("h5")
-        duration.innerText =  "Qualification: "+ele.duration
+        duration.innerText =  "Duration: "+ele.duration
 
         let email = document.createElement("h5")
         email.innerText =  "Email : "+ ele.email

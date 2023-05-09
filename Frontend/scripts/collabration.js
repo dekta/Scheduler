@@ -1,10 +1,10 @@
-let access = sessionStorage.getItem("status")
+let access = localStorage.getItem("status")
 console.log(access)
 let append = document.getElementById("appendprofile")
 let getstarted = document.getElementById("login");
-let userdetials = JSON.parse(sessionStorage.getItem("Userdetials"))
+let userdetials = JSON.parse(localStorage.getItem("Userdetials"))
 console.log(userdetials)
-let avatar = userdetials.userdet.avatar
+let avatar = JSON.parse(localStorage.getItem("avatar"))
 console.log(avatar)
 
 // appendprofile

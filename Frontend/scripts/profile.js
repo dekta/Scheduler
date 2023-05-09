@@ -1,25 +1,27 @@
-let access = sessionStorage.getItem("status")
+let access = localStorage.getItem("status")
 console.log(access)
 let append = document.getElementById("appendprofile")
 let getstarted = document.getElementById("login");
-let userdetials = JSON.parse(sessionStorage.getItem("Userdetials"))
-console.log(userdetials)
-let avatar = userdetials.userdet.avatar
+getstarted.style.display = 'none';
+let userdetails = JSON.parse(localStorage.getItem("Userdetials"))
+console.log(userdetails)
+let avatar = JSON.parse(localStorage.getItem("avatar"))
 console.log(avatar)
+let token =  JSON.parse(localStorage.getItem("token"))
 
-// appendprofile
 
-if(access === "true"){
-    getstarted.style.display = 'none';
+if(access === true){
+    console.log("Yes")
+   
     let data = `
     <div>
     <div class="nav-link" id="collaborate" href="#">
-    <a href="profile.html"><img style="width: 30px;height: 30px;" src=${avatar} /></a>
+    <a href="profile.html"><img style="width: 30px;height: 30px;" src=${avatar}/></a>
     </div>
     </div>
     `
     append.innerHTML=data  
-}
+ }
 
 // don't touch the above code
 
@@ -27,33 +29,50 @@ if(access === "true"){
 
 
 
-let user = JSON.parse(sessionStorage.getItem("Userdetials"));
-console.log(user)
+// let user = JSON.parse(sessionStorage.getItem("Userdetials"));
+// console.log(user)
 
-let address=user.extdet.address
+let address=userdetails.address
 
 // 
 
-document.querySelector("#profileimg").src=user.userdet.avatar;
+document.querySelector("#profileimg").src=avatar;
 
-if(user.userdet.isAdmin==false){
-
-document.querySelector("#usertype").innerText=user.username
+if(userdetails.isAdmin==true){
+document.querySelector("#usertype").innerText="Admin"
 }else{
-    document.querySelector("#usertype").innerText="Admin"
+    document.querySelector("#usertype").innerText="User"
 }
 
-document.querySelector("#uname").innerText=user.username;
-document.querySelector("#email").innerText=user.userEmail;
+document.querySelector("#uname").innerText=userdetails.studentDetail.name;
+document.querySelector("#email").innerText=userdetails.studentDetail.email;
 
-document.querySelector("#sub").innerText=user.extdet.expertise.join(",")
-document.querySelector("#mobile").innerText=user.extdet.mobile;
-document.querySelector("#add").innerText=user.extdet.address.city;
+document.querySelector("#qual").innerText=userdetails.standard || userdetails.qualification
+document.querySelector("#mobile").innerText=userdetails.mobile;
+document.querySelector("#gender").innerText=userdetails.gender;
+document.querySelector("#add").innerText=userdetails.address.city+","+userdetails.address.state;
 
 let logoutbtn=document.querySelector("#logoutbtn");
-logoutbtn.addEventListener("click",(e)=>{
-e.preventDefault();
+logoutbtn.addEventListener("click",logout)
 
-sessionStorage.setItem("Userdetials","");
-window.location.href="index.html"
-})
+async function logout(){
+
+    try{
+            localStorage.setItem("Userdetials","");
+            localStorage.setItem("status",false)
+            let data={token:token}
+            const url = "https://odd-teal-caridea-tux.cyclic.app/userRoutes/logout";
+            let res = await fetch(url,{
+                method:"POST",
+                'Access-Control-Allow-Origin':"*",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify(data)
+            })
+            let response = await res.json();
+            console.log("response:",response)
+            window.location.href="index.html"
+        }
+        catch(err){
+            console.log(err)
+        }
+}

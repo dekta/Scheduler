@@ -22,6 +22,17 @@ function findTecher(data) {
 const getStarted = document.getElementById("get-started");
 
 getStarted.onclick = async() => {
-  getData();
-  window.location.href="schedule.html"
+
+  let user = sessionStorage.getItem("status")
+  //console.log(user)
+  if(user==="true"){
+    getData();
+    window.location.href="schedule.html"
+  }
+  else{
+    alert("Please login")
+    window.location.href="signup.html"
+  }
+
+  
 };

@@ -21,12 +21,20 @@ const url = "https://odd-teal-caridea-tux.cyclic.app/feedback/StudentFeedback";
         body: JSON.stringify(data),
        
       });
-      //console.log(await res.json())
-      alert("Your feedback sucessfully submitted")
+      let response = await res.json()
+
+      if(response.msg==="feedback added"){
+        alert("Your feedback sucessfully submitted")
+        window.location.href = "index.html"
+      }
+      else{
+        alert(response.msg)
+      }
+      
      } catch (error) {
       alert(error.message)
      }
       
-      //alert("Your feedback sucessfully submitted")
+      
     }
   };

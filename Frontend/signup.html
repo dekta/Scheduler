@@ -19,6 +19,9 @@
     <body>
 
 <!--  tf start here  -->
+        <div id="load" style="display: none;">
+          <h1>Loading....</h1>
+        </div>
       
 
         <div class="container" id="Tf">
@@ -182,7 +185,7 @@
             <div class="form login">
                 <div class="form-content">
                     <header>Login</header>
-                    <form action="#" id="Lform">
+                    <div id="Lform">
                         <div class="field input-field">
                             <input type="email" placeholder="Email" class="input">
                         </div>
@@ -199,7 +202,7 @@
                         <div class="field button-field">
                             <button id="login">Login</button>
                         </div>
-                    </form>
+                    </div>
 
                     <div class="form-link">
                         <span>Don't have an account? <a href="#" class="link signup-link">Signup</a></span>
@@ -275,5 +278,6 @@
 
         <!-- JavaScript -->
         <script src="./scripts/signup.js"></script>
+        <script src="./components/nav.js"></script>
     </body>
 </html>

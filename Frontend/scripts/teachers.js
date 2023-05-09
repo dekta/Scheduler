@@ -1,8 +1,34 @@
+let access = localStorage.getItem("status")
+console.log(access)
+let append = document.getElementById("appendprofile")
+
+//let userdetials = JSON.parse(sessionStorage.getItem("Userdetials"))
+//console.log(userdetials)
+let avatar = JSON.parse(localStorage.getItem("avatar"))
+console.log(avatar)
+
+if(access === "true"){
+  let getstarted = document.querySelector("#login");
+  console.log(getstarted,"getstarted")
+  getstarted.style.display = 'none';
+  let data = `
+  <div>
+  <div class="nav-link" id="collaborate" href="#">
+  <a href="profile.html"><img style="width: 30px;height: 30px;" src=${avatar} /></a>
+  </div>
+  </div>
+  `
+  append.innerHTML=data  
+}
+
+
 let defaultimg = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
 const apiUrl = `https://odd-teal-caridea-tux.cyclic.app/scheduler/teacher`;
 let teachers = document.getElementById("Teachers")
 
 async function Teachers(){
+  let load = document.getElementById("load")
+  load.style.display = "block"
   let res = await fetch(apiUrl + "/getAllTeacher", {
       method: "GET",
       headers: {
@@ -10,6 +36,7 @@ async function Teachers(){
       },
     })
     let response = await res.json()
+    load.style.display = "none"
     console.log(response)
     AppendDetails(response)
 }
