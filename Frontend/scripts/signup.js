@@ -1,6 +1,3 @@
-// const { json } = require("body-parser");
-
-
 
 
 // code for change form start here
@@ -8,13 +5,11 @@ const forms = document.querySelector(".forms");
 let links = document.querySelectorAll(".link");
 
 // code for change form end here
-
 const form = document.querySelector("#Sform"); // select the form element
 
 links.forEach((link) => {
   link.addEventListener("click", (event) => {
     event.preventDefault()
-    //preventing form submit
     forms.classList.toggle("show-signup");
   });
 });
@@ -41,14 +36,13 @@ Loginbutton.addEventListener("click", async () => {
     email: email,
     password: password
   };
-  console.log(data)
+  
   
   try{
     let res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
-      mode: "no-cors"
     });
     const response = await res.json();
     console.log(response)
@@ -106,9 +100,9 @@ function NEXT() {
 }
 
 
+
 //signup
 async function addDetails(name, email, password) {
-
   if(name.length==0 || email.length ==0 || password.length==0){
     alert("fill all details")
     return 
@@ -124,15 +118,12 @@ async function addDetails(name, email, password) {
 
   let res = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {"Content-Type": "application/json" },
     body: JSON.stringify(data),
-    mode: "no-cors"
   });
   const response = await res.json();
   console.log(response);
 }
-
-
 
 
 // Submit function for teacher
@@ -280,15 +271,13 @@ console.log(val)
     address: address
   };
 
-  console.log(data)
+  
   const sd="https://odd-teal-caridea-tux.cyclic.app/scheduler/student/addDetails"
 
-  console.log(data)
   let res = await fetch(sd,{
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
-      mode: "no-cors"
    })
    const response = await res.json();
    console.log(response);
