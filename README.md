@@ -1,7 +1,7 @@
 ## Tutoring Appointment Booking System
 
 ## Deploy Link
-- Netlify -> https://comforting-nougat-70fd30.netlify.app/index.html
+- Netlify -> https://schedularcom.netlify.app/index.html
 
 ## Description
 
