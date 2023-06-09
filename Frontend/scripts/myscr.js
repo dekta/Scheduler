@@ -23,7 +23,7 @@ const getStarted = document.getElementById("get-started");
 
 getStarted.onclick = async() => {
 
-  let user = sessionStorage.getItem("status")
+  let user = localStorage.getItem("status")
   //console.log(user)
   if(user==="true"){
     getData();

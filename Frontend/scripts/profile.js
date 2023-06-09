@@ -23,25 +23,18 @@ if(access === true){
     append.innerHTML=data  
  }
 
-// don't touch the above code
 
-
-
-
-
-// let user = JSON.parse(sessionStorage.getItem("Userdetials"));
-// console.log(user)
 
 let address=userdetails.address
 
-// 
 
 document.querySelector("#profileimg").src=avatar;
 
 if(userdetails.isAdmin==true){
-document.querySelector("#usertype").innerText="Admin"
+    document.querySelector("#usertype").innerText="Admin"
 }else{
-    document.querySelector("#usertype").innerText="User"
+    document.querySelector("#usertype").innerText=userdetails
+
 }
 
 document.querySelector("#uname").innerText=userdetails.studentDetail.name;
